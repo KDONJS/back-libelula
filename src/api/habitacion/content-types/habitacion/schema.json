@@ -4,7 +4,8 @@
   "info": {
     "singularName": "habitacion",
     "pluralName": "habitacions",
-    "displayName": "habitacion"
+    "displayName": "habitacion",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -20,14 +21,19 @@
       "required": true
     },
     "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
+    },
+    "numeroCelular": {
+      "type": "string",
+      "required": true
     }
   }
 }

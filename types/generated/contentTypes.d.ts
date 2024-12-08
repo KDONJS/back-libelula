@@ -471,6 +471,7 @@ export interface ApiElegibilidadElegibilidad
 export interface ApiHabitacionHabitacion extends Struct.CollectionTypeSchema {
   collectionName: 'habitacions';
   info: {
+    description: '';
     displayName: 'habitacion';
     pluralName: 'habitacions';
     singularName: 'habitacion';
@@ -493,6 +494,7 @@ export interface ApiHabitacionHabitacion extends Struct.CollectionTypeSchema {
       'api::habitacion.habitacion'
     > &
       Schema.Attribute.Private;
+    numeroCelular: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     tipoHabitacion: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
@@ -535,6 +537,7 @@ export interface ApiInstalacionInstalacion extends Struct.CollectionTypeSchema {
 export interface ApiSectionHeroSectionHero extends Struct.CollectionTypeSchema {
   collectionName: 'section_heroes';
   info: {
+    description: '';
     displayName: 'section-hero';
     pluralName: 'section-heroes';
     singularName: 'section-hero';
@@ -584,6 +587,12 @@ export interface ApiSectionHeroSectionHero extends Struct.CollectionTypeSchema {
         };
       }> &
       Schema.Attribute.DefaultTo<'Libelula'>;
+    numeroCelular: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     pagina: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique &
