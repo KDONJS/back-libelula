@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "comentarios",
+  "info": {
+    "singularName": "comentario",
+    "pluralName": "comentarios",
+    "displayName": "comentario",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "blog": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::blog.blog",
+      "inversedBy": "comentarios"
+    },
+    "comentario": {
+      "type": "blocks",
+      "required": false
+    },
+    "estrellas": {
+      "type": "integer"
+    },
+    "nombreUsuario": {
+      "type": "text",
+      "required": true
+    },
+    "paisUsuario": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

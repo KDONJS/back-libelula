@@ -1,22 +1,23 @@
 {
   "kind": "collectionType",
-  "collectionName": "hero_images",
+  "collectionName": "instalacions",
   "info": {
-    "singularName": "hero-image",
-    "pluralName": "hero-images",
-    "displayName": "hero-image"
+    "singularName": "instalacion",
+    "pluralName": "instalacions",
+    "displayName": "Instalacion"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "titulo": {
+    "instalacion": {
       "type": "string",
-      "required": false
+      "required": true
     },
-    "slogan": {
-      "type": "string"
+    "descripcion": {
+      "type": "richtext",
+      "required": true
     },
     "image": {
       "allowedTypes": [
@@ -26,9 +27,6 @@
       "type": "media",
       "multiple": false,
       "required": true
-    },
-    "estado": {
-      "type": "boolean"
     }
   }
 }

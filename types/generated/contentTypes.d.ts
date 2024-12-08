@@ -369,12 +369,80 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiHeroImageHeroImage extends Struct.CollectionTypeSchema {
-  collectionName: 'hero_images';
+export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
+  collectionName: 'blogs';
   info: {
-    displayName: 'hero-image';
-    pluralName: 'hero-images';
-    singularName: 'hero-image';
+    displayName: 'blog';
+    pluralName: 'blogs';
+    singularName: 'blog';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    comentarios: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::comentario.comentario'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    cuerpoBlog: Schema.Attribute.RichText & Schema.Attribute.Required;
+    images: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::blog.blog'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    tituloBlog: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiComentarioComentario extends Struct.CollectionTypeSchema {
+  collectionName: 'comentarios';
+  info: {
+    description: '';
+    displayName: 'comentario';
+    pluralName: 'comentarios';
+    singularName: 'comentario';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    blog: Schema.Attribute.Relation<'manyToOne', 'api::blog.blog'>;
+    comentario: Schema.Attribute.Blocks;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    estrellas: Schema.Attribute.Integer;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::comentario.comentario'
+    > &
+      Schema.Attribute.Private;
+    nombreUsuario: Schema.Attribute.Text & Schema.Attribute.Required;
+    paisUsuario: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiElegibilidadElegibilidad
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'elegibilidads';
+  info: {
+    displayName: 'elegibilidad';
+    pluralName: 'elegibilidads';
+    singularName: 'elegibilidad';
   };
   options: {
     draftAndPublish: true;
@@ -383,18 +451,148 @@ export interface ApiHeroImageHeroImage extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    estado: Schema.Attribute.Boolean;
+    descripcion: Schema.Attribute.RichText & Schema.Attribute.Required;
     image: Schema.Attribute.Media<'images' | 'files'> &
       Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::hero-image.hero-image'
+      'api::elegibilidad.elegibilidad'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    slogan: Schema.Attribute.String;
-    titulo: Schema.Attribute.String;
+    razon: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiHabitacionHabitacion extends Struct.CollectionTypeSchema {
+  collectionName: 'habitacions';
+  info: {
+    displayName: 'habitacion';
+    pluralName: 'habitacions';
+    singularName: 'habitacion';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    detalleHabitacion: Schema.Attribute.RichText & Schema.Attribute.Required;
+    images: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::habitacion.habitacion'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    tipoHabitacion: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiInstalacionInstalacion extends Struct.CollectionTypeSchema {
+  collectionName: 'instalacions';
+  info: {
+    displayName: 'Instalacion';
+    pluralName: 'instalacions';
+    singularName: 'instalacion';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descripcion: Schema.Attribute.RichText & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    instalacion: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::instalacion.instalacion'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSectionHeroSectionHero extends Struct.CollectionTypeSchema {
+  collectionName: 'section_heroes';
+  info: {
+    displayName: 'section-hero';
+    pluralName: 'section-heroes';
+    singularName: 'section-hero';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descripcion: Schema.Attribute.RichText &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    imagen: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    linkReserva: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::section-hero.section-hero'
+    >;
+    marca: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<'Libelula'>;
+    pagina: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -910,7 +1108,12 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::hero-image.hero-image': ApiHeroImageHeroImage;
+      'api::blog.blog': ApiBlogBlog;
+      'api::comentario.comentario': ApiComentarioComentario;
+      'api::elegibilidad.elegibilidad': ApiElegibilidadElegibilidad;
+      'api::habitacion.habitacion': ApiHabitacionHabitacion;
+      'api::instalacion.instalacion': ApiInstalacionInstalacion;
+      'api::section-hero.section-hero': ApiSectionHeroSectionHero;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "elegibilidads",
+  "info": {
+    "singularName": "elegibilidad",
+    "pluralName": "elegibilidads",
+    "displayName": "elegibilidad"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "razon": {
+      "type": "string",
+      "required": true
+    },
+    "descripcion": {
+      "type": "richtext",
+      "required": true
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}
